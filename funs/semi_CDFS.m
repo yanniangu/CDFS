@@ -1,5 +1,5 @@
 function [Yu, U, f] = semi_CDFS(Xl, YL, Xu, opt)
-    % semi-supervised coordinate feature selection
+    % semi-supervised coordinate descent feature selection
     % Xl: labeled data :nl by d
     % YL: label matrix, nl by c
     % Xu: Unlabeled data, nu by d
@@ -10,6 +10,7 @@ function [Yu, U, f] = semi_CDFS(Xl, YL, Xu, opt)
     %       -initW: 1 represents a good initilization for W; 0 represents a
     %       random inilization.
     %       -rho & mu: the parameters of ALM algorithm
+    % Written by Yannian Gu.
     
     [d, nu] = size(Xu);
     X = [Xl, Xu];
