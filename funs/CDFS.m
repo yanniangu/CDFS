@@ -1,16 +1,11 @@
 function [U, f] = CDFS(X, Y, k)
-    % Coordinate Descent Feature Selction CDFS
+    % Coordinate Descent Feature Selection CDFS
     % X: labeled data, n by d
     % Y: label matrix, n by c
     % k: the number of selected features
     % 
     % Written by Han Zhang 2022/1/15
-    %
-    % for i = 1:size(X, 1)
-    %    X(i,:)=X(i,:)./norm(X(i,:),'fro');
-    % end
     
-    %addpath('.\utils');
     n = size(X, 1);
     H = eye(n) - ones(n, 1) * ones(1, n) * 1 / n;
     St = X' * H * X;
