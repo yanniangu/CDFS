@@ -12,7 +12,7 @@ for i_fea = 1:length(feature_number_list)
     clear Xp;
     option.k = feature_number_list(i_fea); 
     t1 = clock;
-    [~, f] = SSCDFS(Xl', YL, Xu', option);
+    [~, f] = semi_CDFS(Xl', YL, Xu', option);
     t2 = clock;
     Xp = X(:, f);
     kfold = 5;
@@ -20,7 +20,7 @@ for i_fea = 1:length(feature_number_list)
         [Xp_tr, Xp_te, Y_tr, Y_te] = load_data_classify(Xp, Y, index, t);
         model = ClassificationKNN.fit(Xp_tr,Y_tr,'NumNeighbors',5);
         predY_te = predict(model, Xp_te);
-        res(t,:) = ClusteringMeasure1(Y_te, predY_te);
+        res(t,:) = ClusteringMeasure(Y_te, predY_te);
     end
     result(1:4, i_fea) = mean(res,1)';
 end

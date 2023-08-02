@@ -1,5 +1,5 @@
 function [ result] = CDFS_classify_performance( X, Y, index, feature_number_list)
-%UNTITLED3 Summary of this function goes here
+%
 %   X: N x d; the last column is label
 addpath('funs');
 n = size(X, 1);
@@ -21,7 +21,7 @@ for i_fea = 1:length(feature_number_list)
         [Xp_tr, Xp_te, Y_tr, Y_te] = load_data_classify(Xp, Y, index, t);
         model = ClassificationKNN.fit(Xp_tr,Y_tr,'NumNeighbors',5);
         predY_te = predict(model, Xp_te);
-        res(t,:) = ClusteringMeasure1(Y_te, predY_te);
+        res(t,:) = ClusteringMeasure(Y_te, predY_te);
     end
     result(1:4, i_fea) = mean(res,1)';
     result(5, i_fea) = etime(t2, t1);
